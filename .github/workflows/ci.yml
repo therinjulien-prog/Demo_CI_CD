@@ -15,5 +15,5 @@ jobs:
 
       - name: Check pipeline file
         run: |
-          echo "Checking Data pipeline..."
-          cat pipeline.sql
+          echo "Checking required columns..."
+          grep -q "transaction_date" pipeline.sql
