@@ -6,28 +6,29 @@ on:
       - main
 
 jobs:
-  deploy:
+
+  deploy-test:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Prepare deployment
+      - name: Deploy to TEST
         run: |
-          mkdir deployment
-          cp pipeline.sql deployment/pipeline.sql
-          echo "Deployment package prepared"
+          echo "Deploying Data pipeline to TEST..."
+          sleep 3
+          echo "TEST deployment failed"
+          exit 1
 
-      - name: Test database secret
-        env:
-           DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
+
+  deploy-prod:
+    needs: deploy-test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy to PROD
         run: |
-          echo "Database secret received"
-          echo "Secret length: ${#DATABASE_PASSWORD}"
-          
-      - name: Upload deployment artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: data-pipeline
-          path: deployment/
+          echo "Deploying Data pipeline to PROD..."
+          sleep 3
+          echo "PROD deployment successful"
