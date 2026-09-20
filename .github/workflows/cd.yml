@@ -18,8 +18,7 @@ jobs:
         run: |
           echo "Deploying Data pipeline to TEST..."
           sleep 3
-          echo "TEST deployment failed"
-          exit 1
+          echo "TEST deployment successful"
 
 
   deploy-prod:
