@@ -1,0 +1,26 @@
+name: Data CD
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Prepare deployment
+        run: |
+          mkdir deployment
+          cp pipeline.sql deployment/pipeline.sql
+          echo "Deployment package prepared"
+
+      - name: Upload deployment artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: data-pipeline
+          path: deployment/
