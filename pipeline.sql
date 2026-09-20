@@ -1,5 +1,6 @@
 SELECT
     customer_id,
     customer_name,
-    amount
+    amount,
+    transaction_date
 FROM transactions;
