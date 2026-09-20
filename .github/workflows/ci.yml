@@ -1,0 +1,19 @@
+name: Data CI
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Check pipeline file
+        run: |
+          echo "Checking required columns..."
+          grep -q "transaction_date" pipeline.sql
