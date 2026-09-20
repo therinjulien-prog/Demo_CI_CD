@@ -24,6 +24,7 @@ jobs:
   deploy-prod:
     needs: deploy-test
     runs-on: ubuntu-latest
+    environment: Production
 
     steps:
       - name: Deploy to PROD
